@@ -1,0 +1,219 @@
+/* Css Variables */
+/* Any variable we create in the root we can use anywhere */
+:root {
+  --primary: #ddd;
+  --dark: #333;
+  --light: #fff;
+  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+}
+
+html {
+  /* If we use any padding it doesn't affect the width of the element  */
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--dark);
+}
+
+body {
+  background: #ccc;
+  /* This makes the website not take the entire space */
+  margin: 30px 50px;
+  line-height: 1.4;
+}
+
+.btn {
+  background: var(--dark);
+  color: var(--light);
+  /* 1 rem is just a multiplier for the root HTML font size, 16px */
+  padding: 0.6rem 1.3rem;
+  text-decoration: none;
+  border: 0;
+}
+img {
+  /*  We want the images to stay within their containers, within their parents*/
+  max-width: 100%;
+}
+/* Wrapper goes around everything; grid-gap is like a margin between elements  */
+.wrapper {
+  display: grid;
+  grid-gap: 20px;
+}
+
+/* Navigation  */
+
+.main-nav ul {
+  display: grid;
+  grid-gap: 20px;
+  /* By default "ul-s" have padding */
+  padding: 0;
+  /* We don't want any bullets */
+  list-style: none;
+  /* Spread the links into 4 different sections */
+  grid-template-columns: repeat(4, 1fr);
+}
+/* To style each individual link */
+.main-nav a {
+  background: var(--primary);
+  display: block;
+  text-decoration: none;
+  padding: 0.8rem;
+  text-align: center;
+  color: var(--dark);
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow);
+}
+.main-nav a:hover {
+  background: var(--dark);
+  color: var(--light);
+}
+
+/* Top Container */
+.top-container {
+  display: grid;
+  grid-gap: 20px;
+  /* Setting template areas, later we assign them */
+  grid-template-areas:
+    "showcase showcase top-box-a"
+    "showcase showcase top-box-b";
+  /* Grid is 2 dimensional, flex is 1 dimensional */
+}
+/* Grid assignment */
+.showcase {
+  grid-area: showcase;
+  min-height: 400px;
+  background: url(img/showcase.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 3rem;
+  /* Use the grid for the layot, and flexbox to align things inside of those elements */
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  /* Justify to move it down */
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+
+.showcase h1 {
+  font-size: 4rem;
+  margin-bottom: 0;
+  color: var(--light);
+}
+.showcase p {
+  font-size: 1.3rem;
+  margin-top: 0;
+  color: var(--light);
+}
+/* Top Box */
+.top-box {
+  background: var(--primary);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+.top-box .price {
+  font-size: 2.5rem;
+}
+
+.top-box-a {
+  grid-area: top-box-a;
+}
+
+.top-box-b {
+  grid-area: top-box-b;
+}
+
+/* Boxes */
+
+.boxes {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.box {
+  background: var(--primary);
+  text-align: center;
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow);
+}
+/* Info */
+.info {
+  background: var(--primary);
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 3rem;
+}
+/* Portfolio */
+
+.portfolio {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.portfolio img {
+  width: 100%;
+  box-shadow: var(--shadow);
+}
+
+/* Footer */
+footer {
+  margin-top: 2rem;
+  background: var(--dark);
+  color: var(--light);
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Media Queries */
+
+@media (max-width: 700px) {
+  .top-container {
+    grid-template-areas:
+      "showcase showcase "
+      "top-box-a top-box-b ";
+  }
+  .showcase h1 {
+    font-size: 2.5rem;
+  }
+  .main-nav ul {
+    grid-template-columns: 1fr;
+  }
+  .info {
+    grid-template-columns: 1fr;
+  }
+  .info .btn {
+    display: block;
+    text-align: center;
+    margin: auto;
+  }
+}
+@media (max-width: 500px) {
+  .top-container {
+    grid-template-areas:
+      "showcase"
+      "top-box-a"
+      "top-box-b";
+  }
+  .showcase h1 {
+    font-size: 2.5rem;
+  }
+  .main-nav ul {
+    grid-template-columns: 1fr;
+  }
+  .info {
+    grid-template-columns: 1fr;
+  }
+  .info .btn {
+    display: block;
+    text-align: center;
+    margin: auto;
+  }
+}
